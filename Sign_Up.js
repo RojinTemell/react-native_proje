@@ -7,14 +7,16 @@ import {
     TextInput,
     Button
 } from 'react-native';
-import React from 'react';
+import React,{useState} from 'react';
 
 
  function Sign_Up_Screen (props) {
+
     function navigateToPage(){
      props.navigation.navigate("Sign In");
  }
 
+    
 
 
   return (

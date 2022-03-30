@@ -21,7 +21,7 @@ function App(){
                tabBarInactiveBackgroundColor:'gray'
            }}
            >
-                <Tab.Screen name='Sign Up' component={Sign_In_Screen}
+                <Tab.Screen name='Sign Up' component={Sign_Up_Screen}
                options={{
                    tabBarLabel:'Sign Up',
                    tabBarIcon:({color,size})=>(

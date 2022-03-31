@@ -16,7 +16,7 @@
     "@react-navigation/native": "^6.0.8",
     "@react-navigation/native-stack": "^6.5.0",
     "final-form": "^4.20.6",
-    "react": "17.0.2",
+    "react": "^17.0.2",
     "react-final-form": "^6.5.8",
     "react-native": "0.67.3",
     "react-native-fontawesome": "^7.0.0",

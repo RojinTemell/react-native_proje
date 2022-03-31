@@ -6,12 +6,13 @@ import {
   StyleSheet,
   TextInput,
   Button,
+  Pressable,
 } from 'react-native';
 import React, {useState} from 'react';
 
 function Sign_Up_Screen(props) {
-  function navigateToPage() {
-    props.navigation.navigate('Sign In');
+  function SignInToPage() {
+    props.navigation.navigate('SignIn');
   }
 
   return (
@@ -91,7 +92,16 @@ function Sign_Up_Screen(props) {
             </View>
 
             <View style={{margin: 20, width: 100, marginLeft: 100}}>
-              <Button title="Sign Up" onPress={navigateToPage}></Button>
+              <Button title="Sign Up" onPress={SignInToPage}></Button>
+            </View>
+
+            <View style={{flexDirection: 'row'}}>
+              <Text> Do you have an account ?</Text>
+              <Pressable onPress={SignInToPage}>
+                <Text style={{marginLeft: 10, color: '#330099', fontSize: 15}}>
+                  Login
+                </Text>
+              </Pressable>
             </View>
           </View>
         </View>

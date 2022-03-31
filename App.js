@@ -6,44 +6,28 @@ import Sign_Up_Screen from './Sign_Up';
 import Sign_In_Screen from './Sign_In';
 import HomeScreen from './Home_Screen';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
-
 const Stack = createNativeStackNavigator();
 
-function App() {
-  const Tab = createBottomTabNavigator();
+export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator
-        initialRouteName="Home"
-        screenOptions={{
-          tabBarActiveTintColor: 'red',
-          tabBarInactiveBackgroundColor: 'gray',
-        }}>
-        <Tab.Screen
-          name="Sign Up"
-          component={Sign_Up_Screen}
-          options={{
-            tabBarLabel: 'Sign Up',
-            tabBarIcon: ({color, size}) => (
-              <Icon name="pencil" color={color} size={size} />
-            ),
-          }}
-        />
-
-        <Tab.Screen
+      <Stack.Navigator>
+        <Stack.Screen
           name="SignIn"
           component={Sign_In_Screen}
-          options={{
-            tabBarLabel: 'Sign In',
-            tabBarIcon: ({color, size}) => (
-              <Icon name="pencil" color={color} size={size} />
-            ),
-          }}
+          options={{headerShown: false}}
         />
-      </Tab.Navigator>
+        <Stack.Screen
+          name="SignUp"
+          component={Sign_Up_Screen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="HomeScreen"
+          component={HomeScreen}
+          options={{headerShown: false}}
+        />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
-
-export default App;

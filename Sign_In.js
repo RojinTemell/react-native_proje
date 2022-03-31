@@ -5,11 +5,19 @@ import {
   View,
   StyleSheet,
   TextInput,
+  Button,
   Pressable,
 } from 'react-native';
 import React, {useState} from 'react';
 
-const Sign_In_Screen = () => {
+function Sign_In_Screen(props) {
+  function SignUpToPage() {
+    props.navigation.navigate('SignUp');
+  }
+  function HomeToPage() {
+    props.navigation.navigate('HomeScreen');
+  }
+
   return (
     <ScrollView
       style={{flex: 1, backgroundColor: '#ffffff'}}
@@ -40,33 +48,23 @@ const Sign_In_Screen = () => {
               />
             </View>
           </View>
-          <Pressable
-            onPress={() => alert(' Well Done')}
-            style={{
-              width: 100,
-              height: 40,
-              backgroundColor: '#330099',
-              marginTop: 20,
-              marginLeft: 150,
-            }}>
-            <Text
-              style={{
-                marginTop: 10,
-                fontSize: 18,
-                fontWeight: 'bold',
-                color: '#fff',
-                margin: 2,
-                textAlign: 'center',
-              }}>
-              {' '}
-              Sign In
-            </Text>
-          </Pressable>
+          <View style={{margin: 20, width: 100, marginLeft: 100}}>
+            <Button title="Sign In" onPress={HomeToPage}></Button>
+          </View>
+
+          <View style={{flexDirection: 'row', marginBottom: 30}}>
+            <Text>Dont have an account ?</Text>
+            <Pressable onPress={SignUpToPage}>
+              <Text style={{color: '#330099', marginLeft: 10}}>
+                Register Now
+              </Text>
+            </Pressable>
+          </View>
         </View>
       </View>
     </ScrollView>
   );
-};
+}
 
 const styles = StyleSheet.create({
   bottomView: {

@@ -15,7 +15,7 @@ function Sign_In_Screen(props) {
     props.navigation.navigate('SignUp');
   }
   function HomeToPage() {
-    props.navigation.navigate('HomeScreen');
+    props.navigation.navigate('HomePage');
   }
 
   return (

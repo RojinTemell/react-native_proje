@@ -11,37 +11,41 @@ import Settings_Screen from './Settings_Screen';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-function HomePage(){
+function HomePage() {
+  return (
+    <Tab.Navigator
+      initialRouteName="HomePage"
+      screenOptions={{
+        tabBarActiveTintColor: 'red',
+        tabBarInactiveTintColor: 'gray',
+      }}>
+      <Tab.Screen
+        name="HomeScreen"
+        component={HomeScreen}
+        options={{
+          headerShown: false,
 
-  return(
-    
-    <Tab.Navigator  initialRouteName='HomePage' screenOptions={{
-      tabBarActiveTintColor:'red',
-      tabBarInactiveTintColor:'gray',
-      
-    }}>
-      <Tab.Screen name='HomeScreen' component={HomeScreen} options={{
-        headerShown:false,
-        
-        tabBarLabel:'HomeScreen',
-        tabBarIcon:({color,size})=>(
-          <Icon name='home' color={color} size={size} />
-        ),
-        }} />
-         <Tab.Screen name='Settings_Screen' component={Settings_Screen} options={{
-        headerShown:false,
-        
-        tabBarLabel:'Settings_Screen',
-        tabBarIcon:({color,size})=>(
-          <Icon name='home' color={color} size={size} />
-        ),
-        }} />
+          tabBarLabel: 'HomeScreen',
+          tabBarIcon: ({color, size}) => (
+            <Icon name="home" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Settings_Screen"
+        component={Settings_Screen}
+        options={{
+          headerShown: false,
+
+          tabBarLabel: 'Settings_Screen',
+          tabBarIcon: ({color, size}) => (
+            <Icon name="home" color={color} size={size} />
+          ),
+        }}
+      />
     </Tab.Navigator>
-    
   );
 }
-
-
 
 export default function App() {
   return (

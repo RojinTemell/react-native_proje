@@ -9,10 +9,29 @@ import {
   Pressable,
 } from 'react-native';
 import React, {useState} from 'react';
+import firestore from '@react-native-firebase/firestore';
 
-function Sign_Up_Screen(props) {
+function Sign_Up_Screen({navigation}) {
+  const [user, setUsers] = useState({
+    firstname: '',
+    lastname: '',
+    username: '',
+    email: '',
+    password: '',
+    confirmpassword: '',
+  });
+
+  const CreateUser = async user => {
+    try {
+      await firestore().collection('users').add(user);
+      navigation.navigate('HomePage');
+    } catch (error) {
+      alert(error);
+    }
+  };
+
   function SignInToPage() {
-    props.navigation.navigate('SignIn');
+    navigation.navigate('SignIn');
   }
 
   return (
@@ -38,6 +57,10 @@ function Sign_Up_Screen(props) {
             <Text style={styles.text_footer}> Firstname</Text>
             <View style={styles.action}>
               <TextInput
+                value={user.firstname}
+                onChangeText={firstname => {
+                  setUsers({...user, firstname: firstname});
+                }}
                 placeholder="your firstname"
                 style={styles.textinput}
               />
@@ -47,6 +70,10 @@ function Sign_Up_Screen(props) {
               <Text style={styles.text_footer}> Lastname</Text>
               <View style={styles.action}>
                 <TextInput
+                  value={user.lastname}
+                  onChangeText={lastname => {
+                    setUsers({...user, lastname: lastname});
+                  }}
                   placeholder="your lastname"
                   style={styles.textinput}
                 />
@@ -57,6 +84,10 @@ function Sign_Up_Screen(props) {
               <Text style={styles.text_footer}> Username</Text>
               <View style={styles.action}>
                 <TextInput
+                  value={user.username}
+                  onChangeText={username => {
+                    setUsers({...user, username: username});
+                  }}
                   placeholder="your username"
                   style={styles.textinput}
                 />
@@ -66,7 +97,14 @@ function Sign_Up_Screen(props) {
             <View style={{margin: 10, marginLeft: -3, marginBottom: -9}}>
               <Text style={styles.text_footer}> Email</Text>
               <View style={styles.action}>
-                <TextInput placeholder="your email" style={styles.textinput} />
+                <TextInput
+                  value={user.email}
+                  onChangeText={email => {
+                    setUsers({...user, email: email});
+                  }}
+                  placeholder="your email"
+                  style={styles.textinput}
+                />
               </View>
             </View>
 
@@ -74,6 +112,10 @@ function Sign_Up_Screen(props) {
               <Text style={styles.text_footer}> Password</Text>
               <View style={styles.action}>
                 <TextInput
+                  value={user.password}
+                  onChangeText={password => {
+                    setUsers({...user, password: password});
+                  }}
                   placeholder="password"
                   secureTextEntry={true}
                   style={styles.textinput}
@@ -84,6 +126,10 @@ function Sign_Up_Screen(props) {
               <Text style={styles.text_footer}>Confirm Password</Text>
               <View style={styles.action}>
                 <TextInput
+                  value={user.confirmpassword}
+                  onChangeText={confirmpassword => {
+                    setUsers({...user, confirmpassword: confirmpassword});
+                  }}
                   placeholder=" confirm password"
                   secureTextEntry={true}
                   style={styles.textinput}
@@ -92,7 +138,11 @@ function Sign_Up_Screen(props) {
             </View>
 
             <View style={{margin: 20, width: 100, marginLeft: 100}}>
-              <Button title="Sign Up" onPress={SignInToPage}></Button>
+              <Button
+                title="Sign Up"
+                onPress={() => {
+                  CreateUser(user);
+                }}></Button>
             </View>
 
             <View style={{flexDirection: 'row'}}>

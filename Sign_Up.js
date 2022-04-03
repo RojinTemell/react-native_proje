@@ -4,12 +4,13 @@ import {
   ImageBackground,
   View,
   StyleSheet,
-  TextInput,
-  Button,
   Pressable,
+  Button,
+  TextInput
 } from 'react-native';
 import React, {useState} from 'react';
 import firestore from '@react-native-firebase/firestore';
+import { user, setUsers } from "firebase/firestore"; 
 
 function Sign_Up_Screen({navigation}) {
   const [user, setUsers] = useState({
@@ -21,9 +22,11 @@ function Sign_Up_Screen({navigation}) {
     confirmpassword: '',
   });
 
-  const CreateUser = async user => {
+  const CreateUser = user => {
     try {
-      await firestore().collection('users').add(user);
+      firestore().collection('users').add(user).then((res)=> {
+        alert(res.id)
+      });
       navigation.navigate('HomePage');
     } catch (error) {
       alert(error);
